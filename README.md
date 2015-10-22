@@ -1,4 +1,4 @@
-# JavsScript-Patterns
+# Notes on JavsScript Patterns
 
 
 JavaScript: Concepts
@@ -19,34 +19,43 @@ No Classes
 
 Prototypes
 
+```javascript
 console.log("test", 1, {}, [1,2,3]); 
 console.dir({one: 1, two: {three: 3}});
+```
 
 It is possible not to use console.log or console.dir when testing in console.
 
 #Minimizing Globals
+```javascript
 myglobal = "hello"; // antipattern 
 console.log(myglobal); // "hello" 
 console.log(window.myglobal); // "hello" 
 console.log(window["myglobal"]); // "hello" 
 console.log(this.myglobal); // "hello"
+```
 
 Use var each time you declare variable in the function.
 Declare all the variables in the very begining of the function.
 
 // antipattern, do not use 
 // right-to-left evaluation
-function foo() { \n
+```javascript
+function foo() {
 	var a = b = 0;
 	// ... 
 }
+```
 
 #Access to the Global Object
+```javascript
 var global = (function () { 
 	return this;
 }());
+```
 
 #Single var Pattern
+```javascript
 function func() { 
 	var a = 1,
 	b = 2,
@@ -56,4 +65,5 @@ function func() {
 	j;
 	// function body... 
 }
+```
 
