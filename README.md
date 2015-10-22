@@ -67,4 +67,97 @@ function func() {
 }
 ```
 
+DOM (Document Object Model) references. 
+You can assign DOM references to local variables together with the single declaration.
+
+```javascript
+function updateElement() {
+	var el = document.getElementById("result"),
+	style = el.style;
+	// do something with el and style...
+}
+```
+
+##Hoisting: A Problem with Scattered vars
+
+For JavaScript, as long as a variable is in the same scope (same function), it’s considered declared, even when it’s used before the var declaration. 
+
+```javascript
+myname = "global"; // global variable 
+function func() {
+    alert(myname); // "undefined" 
+    var myname = "local"; 
+    alert(myname); // "local"
+} 
+func();
+```
+
+The preceding code snippet will behave as if it were implemented like so:
+
+```javascript
+myname = "global"; // global variable function func() {
+var myname; // same as -> var myname = undefined;
+alert(myname); // "undefined"
+myname = "local";
+alert(myname); // "local" }
+func();
+```
+
+##for Loops
+In for loops you iterate over arrays or array-like objects such as arguments and HTMLCollection objects. The usual for loop pattern looks like the following:
+
+```javascript
+// sub-optimal loop
+for (var i = 0; i < myarray.length; i++) {
+	// do something with myarray[i] 
+}
+```
+
+HTMLCollections are objects returned by DOM methods such as:
+• document.getElementsByName()
+• document.getElementsByClassName() 
+• document.getElementsByTagName()
+
+document.images
+	All IMG elements on the page
+document.links
+	All A elements
+document.forms
+	All forms
+document.forms[0].elements
+	All fields in the first form on the page
+
+DOM operations are expensive in general.
+Cache the length and declare the length variable out of the loop.
+
+```javascript
+function looper() { 
+	var i = 0,
+	max,
+	myarray = [];
+	// ...
+	for (i = 0, max = myarray.length; i < max; i++) {
+		// do something with myarray[i] 
+	}
+}
+```
+
+The faster way:
+
+```javascript
+The first modified pattern is:
+var i, myarray = [];
+for (i = myarray.length; i--;) {
+	// do something with myarray[i] 
+}
+
+And the second uses a while loop: 
+
+var myarray = [],
+i = myarray.length;
+
+while (i--) {
+	// do something with myarray[i] 
+}
+```
 
