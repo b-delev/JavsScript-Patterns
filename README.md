@@ -36,7 +36,7 @@ Declare all the variables in the very begining of the function.
 
 // antipattern, do not use 
 // right-to-left evaluation
-function foo() {
+function foo() { <br />
 	var a = b = 0;
 	// ... 
 }
