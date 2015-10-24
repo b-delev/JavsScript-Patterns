@@ -161,3 +161,36 @@ while (i--) {
 }
 ```
 
+
+##for-in Loops (enumeration) 
+
+Used for loop through objects.
+
+It’s important to use the method hasOwnProperty() when iterating over object properties to filter out properties that come down the prototype chain.
+
+```javascript
+// the object 
+var man = {
+	hands: 2, legs: 2, heads: 1
+};
+
+// for-in loop
+for (var i in man) {
+	if (man.hasOwnProperty(i)) { // filter
+		console.log(i, ":", man[i]);
+	}
+}
+```
+
+Also to avoid the long property lookups all the way to Object, you can use a local variable to “cache” it:
+```javascript
+var i,
+hasOwn = Object.prototype.hasOwnProperty;
+for (i in man) {
+	if (hasOwn.call(man, i)) { 
+		// filter
+		console.log(i, ":", man[i]); 
+	}
+}
+```
+
