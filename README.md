@@ -1,6 +1,24 @@
 # Notes on JavsScript Patterns
 
+###Table of contents
+<hr>
 [Minimizing Globals](#Minimizing Globals)
+
+[Access to the Global Object](#Access to the Global Object)
+[Single var Pattern](#Single var Pattern)
+[Hoisting: A Problem with Scattered vars](#Hoisting: A Problem with Scattered vars)
+[for Loops](#for Loops)
+[for-in Loops (enumeration)](#for-in Loops (enumeration))
+[(Not) Augmenting Built-in Prototypes](#(Not) Augmenting Built-in Prototypes)
+[switch Pattern](#switch Pattern)
+[Avoiding Implied Typecasting](#Avoiding Implied Typecasting)
+[Avoiding eval()](#Avoiding eval())
+[Number Conversions with parseInt()](#Number Conversions with parseInt())
+[Indentation](#Indentation)
+[Curly Braces](#Curly Braces)
+[Opening Brace Location](#Opening Brace Location)
+[White Space](#White Space)
+
 
 JavaScript: Concepts
 
