@@ -7,7 +7,7 @@
 [Access to the Global Object](Access to the Global Object)
 
 [Single var Pattern](Single var Pattern)
-
+ 
 [Hoisting\: A Problem with Scattered vars](Hoisting\: A Problem with Scattered vars)
 
 [for Loops](for Loops)
