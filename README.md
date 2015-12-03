@@ -197,7 +197,124 @@ for (i in man) {
 ## (Not) Augmenting Built-in Prototypes
 Augmenting the prototype property of constructor functions is a powerful way to add functionality.
 ```javascript
-if (typeof Object.protoype.myMethod !== "function") { Object.protoype.myMethod = function () {
-// implementation... };
+if (typeof Object.protoype.myMethod !== "function") { 
+	Object.protoype.myMethod = function () {
+	// implementation... 
+	};
 }
+```
+
+## switch Pattern
+``` javascript
+var inspect_me = 0, result = '';
+switch (inspect_me) { 
+case 0:
+	result = "zero";
+break; 
+case 1:
+	result = "one";
+break; 
+default:
+	result = "unknown"; 
+}
+```
+
+## Avoiding Implied Typecasting
+To avoid confusion caused by the implied typecasting, always use the === and !== operators that check both the values and the type of the expressions you compare
+
+``` javascript
+var zero = 0;
+if (zero === false) {
+	// not executing because zero is 0, not false 
+}
+
+// antipattern
+if (zero == false) {
+	// this block is executed... 
+}
+```
+
+## Avoiding eval()
+
+If you spot the use of eval() in your code, remember the mantra “eval() is evil.” This function takes an arbitrary string and executes it as JavaScript code.
+
+```javascript
+// antipattern
+var property = "name"; 
+alert(eval("obj." + property));
+
+// preferred
+var property = "name"; 
+alert(obj[property]);
+```
+
+It’s also important to remember that passing strings to setInterval(), setTimeout(), and the Function() constructor is, for the most part, similar to using eval() and there- fore should be avoided.
+
+``` javascript 
+// antipatterns 
+setTimeout("myFunc()", 1000); 
+setTimeout("myFunc(1, 2, 3)", 1000);
+
+// preferred 
+setTimeout(myFunc, 1000); 
+setTimeout(function () {
+	myFunc(1, 2, 3); 
+}, 1000);
+```
+
+
+## Number Conversions with parseInt()
+Using parseInt() you can get a numeric value from a string. 
+``` javascript
+var month = "06", year = "09";
+month = parseInt(month, 10); 
+year = parseInt(year, 10);
+```
+Alternative ways to convert a string to a number include:
+``` javascript
++"08" // result is 8 
+Number("08") // 8
+```
+
+## Indentation
+Code without indentation is impossible to read.
+``` javascript 
+function outer(a, b) { 
+		var c = 1,
+		d = 2,
+		inner; 
+	if (a > b) {
+		inner = function () { 
+			return {
+				r: c - d 
+			};
+		};
+	} else {
+		inner = function () { 
+			return {
+				r: c + d 
+			};
+		}; 
+	}
+		return inner; 
+}
+```
+
+## Curly Braces
+Curly braces should always be used, even in cases when they are optional. 
+``` javascript 
+// bad
+if (true)
+alert(1); 
+else
+alert(2);
+
+// better 
+if (true) {
+	alert(1); 
+} else {
+	alert(2); 
+}
+
+
 ```
