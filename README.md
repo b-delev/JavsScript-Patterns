@@ -315,6 +315,75 @@ if (true) {
 } else {
 	alert(2); 
 }
-
-
 ```
+## Opening Brace Location
+Best practice is to have opening brace on the same row.
+
+``` javasccript
+
+function func() { 
+	return {
+		name: "Batman" 
+		};
+}
+```
+
+### White Space
+
+Good places to use a white space include:
+• After the semicolons that separate the parts of a for loop: for example, for (var i
+    = 0; i < 10; i += 1) {...}
+• Initializing multiple variables (i and max) in a for loop: for (var i = 0, max = 10; i < max; i += 1) {...}
+• After the commas that delimit array items: var a = [1, 2, 3];
+• Aftercommasinobjectpropertiesandaftercolonsthatdividepropertynamesand
+their values: var o = {a: 1, b: 2};
+• Delimiting function arguments: myFunc(a, b, c)
+• Before the curly braces in function declarations: function myFunc() {}
+• Afterfunctioninanonymousfunctionexpressions:var myFunc = function () {};
+
+``` javascript
+var d = 0,
+a = b + 1;
+if (a && b && c) { 
+	d = a % c;
+	a += d; 
+}
+```
+
+## Capitalizing Constructors
+JavaScript doesn’t have classes but has constructor functions invoked with new:
+```javascript
+var adam = new Person();
+```
+
+## Separating Words
+For your constructors, you can use upper camel case, as in MyConstructor(), and for function and method names, you can use lower camel case, as in myFunction(), calculateArea() and getFirstName().
+
+Convention of using all-caps for naming variables that shouldn’t change values during the life of the program.
+Capital letters (all-caps) for names of global variables.
+
+getName() is meant to be a public method, part of the stable API, whereas _getFirst() and _getLast() are meant to be private.
+
+Following are some varieties to the _private convention:
+• Using a trailing underscore to mean private, as in name_ and getElements_()
+• Using one underscore prefix for _protected properties and two for __private properties
+www.it-ebooks.info
+￼￼Naming Conventions | 29
+• InFirefoxsomeinternalpropertiesnottechnicallypartofthelanguageareavail- able, and they are named with a two underscores prefix and a two underscore suffix, such as __proto__ and __parent__
+
+## Writing Comments
+
+You have to comment your code, even if it’s unlikely that someone other than you will ever touch it. Often when you’re deep into a problem you think it’s obvious what the code does, but when you come back to the code after a week, you have a hard time remembering how it worked exactly.
+
+The most important habit, yet hardest to follow, is to keep the com- ments up to date, because outdated comments can mislead and be much worse than no comments at all.
+
+## Writing API Docs
+
+For JavaScript there are two excellent tools, both free and open source: 
+the JSDoc Toolkit (http://code.google.com/p/jsdoc-toolkit/) and 
+YUIDoc (http://yuilibrary.com/projects/yuidoc).
+
+• Writing specially formatted code blocks
+• Running a tool to parse the code and the comments
+• Publishing the results of the tool, which are most often HTML pages
+
