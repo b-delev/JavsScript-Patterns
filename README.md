@@ -397,3 +397,65 @@ YUIDoc (http://yuilibrary.com/projects/yuidoc).
 • Publishing the results of the tool, which are most often HTML pages
 
 
+## YUIDoc Example
+The contents of app.js starts like this:
+
+``` javascript
+/**
+* My JavaScript application 
+*
+* @module myapp
+*/
+```
+Then you define a blank object to use as a namespace:
+``` javascript
+var MYAPP = {};
+```
+And then you define an object math_stuff that has two methods: sum() and multi():
+``` javascript
+/**
+* A math utility
+* @namespace MYAPP 
+* @class math_stuff 
+*/
+MYAPP.math_stuff = {
+/**
+* Sums two numbers
+*
+* @method sum
+* @param {Number} a First number
+* @param {Number} b The second number
+* @return {Number} The sum of the two inputs 
+*/
+sum: function (a, b) {
+	return a + b; 
+	},
+	/**
+	* Multiplies two numbers 
+	*
+	* @method multi
+	* @param {Number} a First number
+	* @param {Number} b The second number
+	* @return {Number} The two inputs multiplied 
+	*/
+	multi: function (a, b) {
+		return a * b; 
+	}
+};
+```
+And that completes the first “class.” Note the highlighted tags:
+
+@namespace
+The global reference that contains your object.
+
+@class
+A misnomer (no classes in JavaScript) that is used to mean either an object or a constructor function.
+
+@method
+Defines a method in an object and specifies the method name.
+
+@param
+Lists the arguments that a function takes. The types of the parameters are in curly braces, followed by the parameter name and its description.
+
+@return
+Like @param, only it describes the value returned by the method and has no name.
