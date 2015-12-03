@@ -697,36 +697,201 @@ adam.say(); // "I am Adam"
 
 <a name="Constructor’s Return Values"></a>
 ## Constructor’s Return Values
+When invoked with new, a constructor function always returns an object; by default it’s the object referred to by this.
+```javascript
+var Objectmaker = function () {
+// this `name` property will be ignored
+// because the constructor
+// decides to return another object instead this.name = "This is it";
+// creating and returning a new object
+	var that = {};
+	that.name = "And that's that";
+	return that;
+};
+// test
+var o = new Objectmaker(); 
+console.log(o.name); // "And that's that"
+```
 
 <a name="Patterns for Enforcing new"></a>
 ## Patterns for Enforcing new
+```javascript
+// constructor function Waffle() {
+this.tastes = "yummy"; }
+// a new object
+var good_morning = new Waffle(); 
+console.log(typeof good_morning); // "object" 
+console.log(good_morning.tastes); // "yummy"
+// antipattern:
+// forgotten `new`
+var good_morning = Waffle();
+console.log(typeof good_morning); // "undefined" 
+console.log(window.tastes); // "yummy"
+```
 
 <a name="Using that"></a>
 ## Using that
+Following a naming convention can certainly help, but it merely suggests and doesn’t enforce the correct behavior. 
+```javascript
+function Waffle() { 
+	var that = {};
+	that.tastes = "yummy";
+	return that; 
+}
+```
+For simpler objects, you don’t even need a local variable such as that; you can simply return an object from a literal like so:
+```javascript
+function Waffle() { 
+	return {
+		tastes: "yummy" 
+	};
+}
+```
+
+Note that the variable name that is just a convention; it’s not a part of the language. You can use any name, where other common variable names include self and me.
+
 
 <a name="Self-Invoking Constructor"></a>
 ## Self-Invoking Constructor
+To address the drawback of the previous pattern and have prototype properties avail- able to the instance objects, consider the following approach. 
+```javascirpt
+function Waffle() {
+	if (!(this instanceof Waffle)) {
+		return new Waffle(); 
+	}
+	this.tastes = "yummy";
+}
+Waffle.prototype.wantAnother = true;
+// testing invocations 
+var first = new Waffle(),
+second = Waffle();
+
+console.log(first.tastes); // "yummy" 
+console.log(second.tastes); // "yummy"
+
+console.log(first.wantAnother); // true 
+console.log(second.wantAnother); // true
+```
+Another general-purpose way to check the instance is to compare with arguments.callee
+```javascript
+if (!(this instanceof arguments.callee)) {
+	return new arguments.callee(); 
+}
+```
 
 <a name="Array Literal"></a>
 ## Array Literal
+Arrays in JavaScript, as most other things in the language, are objects. They can be created with the built-in constructor function Array().
+```javascript
+// array of three elements
+// warning: antipattern
+var a = new Array("itsy", "bitsy", "spider");
+// the exact same array
+var a = ["itsy", "bitsy", "spider"];
+console.log(typeof a); // "object", because arrays are objects 
+console.log(a.constructor === Array); // true
+```
 
 <a name="Array Literal Syntax"></a>
 ## Array Literal Syntax
+There’s not much to the array literal notation: it’s just a comma-delimited list of ele- ments and the whole list is wrapped in square brackets.
 
 <a name="Array Constructor Curiousness"></a>
 ## Array Constructor Curiousness
+One more reason to stay away from new Array() is to avoid a possible trap that this constructor has in store for you.
+```javascript
+// an array of one element 
+var a = [3]; 
+console.log(a.length); // 1 
+console.log(a[0]); // 3
+// an array of three elements
+var a = new Array(3); 
+console.log(a.length); // 3 
+console.log(typeof a[0]); // "undefined"
+
+
+// using array literal
+var a = [3.14]; 
+console.log(a[0]); // 3.14
+var a = new Array(3.14); // RangeError: invalid array length 
+console.log(typeof a); // "undefined"
+```
 
 <a name="Check for Array-ness"></a>
 ## Check for Array-ness
+```javascirpt
+console.log(typeof [1, 2]); // "object"
+
+Array.isArray([]); // true
+// trying to fool the check 
+// with an array-like object 
+Array.isArray({
+	length: 1,
+	"0": 1,
+	slice: function () {}
+}); // false
+```
+If this new method is not available in your environment, you can make the check by calling the Object.prototype.toString() method. If you invoke the call() method of toString in the context of an array, it should return the string “[object Array]”. If the context is an object, it should return the string “[object Object]”. So you can do some- thing like this:
+
+```javascript
+if (typeof Array.isArray === "undefined") { 
+	Array.isArray = function (arg) {
+		return Object.prototype.toString.call(arg) === "[object Array]"; 
+	};
+}
+```
+
 
 <a name="JSON"></a>
 ## JSON
+JSON is only a combination of the array and the object literal notation. 
+```javascript
+{"name": "value", "some": [1, 2, 3]}
+```
+The only syntax difference between JSON and the object literal is that property names need to be wrapped in quotes to be valid JSON. 
+You can check JSON validity here: http://jsonlint.com/
 
 <a name="Working with JSON"></a>
 ## Working with JSON
+```javascript
+// an input JSON string
+var jstr = '{"mykey": "my value"}';
+// antipattern
+var data = eval('(' + jstr + ')');
+// preferred
+var data = JSON.parse(jstr);
+console.log(data.mykey); // "my value"
+
+
+// an input JSON string
+var jstr = '{"mykey": "my value"}';
+var data = jQuery.parseJSON(jstr); 
+console.log(data.mykey); // "my value"
+
+
+var dog = {
+	name: "Fido",
+	dob: new Date(),
+	legs: [1, 2, 3, 4] 
+};
+var jsonstr = JSON.stringify(dog);
+// jsonstr is now:
+// {"name":"Fido","dob":"2010-04-11T22:36:22.436Z","legs":[1,2,3,4]}
+```
+
 
 <a name="Regular Expression Literal"></a>
 ## Regular Expression Literal
+• Using the new RegExp() constructor 
+
+• Using the regular expression literal
+
+```javascript
+// regular expression literal 
+var re = /\\/gm;
+// constructor
+var re = new RegExp("\\\\", "gm");
+```
 
 <a name="Regular Expression Literal Syntax"></a>
 ## Regular Expression Literal Syntax
