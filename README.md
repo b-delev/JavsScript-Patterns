@@ -85,8 +85,9 @@
 [Primitive Wrappers](Primitive Wrappers)
 
 [Error Objects](Error Objects)
+<hr>
 
-JavaScript: Concepts
+##JavaScript: Concepts
 
 Object-Oriented
 
