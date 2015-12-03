@@ -476,3 +476,45 @@ Minification is the process of eliminating white space, comments, and other none
 • Using void, with, or eval
 
 • Improperly escaped characters in regular expressions
+
+
+# Literals and Constructors
+
+## Object Literal
+
+## The Object Literal Syntax
+
+## Objects from a Constructor
+
+## Object Constructor Catch
+
+##  Custom Constructor Functions
+
+## Constructor’s Return Values
+
+## Patterns for Enforcing new
+
+## Using that
+
+## Self-Invoking Constructor
+
+## Array Literal
+
+## Array Literal Syntax
+
+## Array Constructor Curiousness
+
+## Check for Array-ness
+
+## JSON
+
+## Working with JSON
+
+## Regular Expression Literal
+
+## Regular Expression Literal Syntax
+
+## Primitive Wrappers
+
+## Error Objects
+
