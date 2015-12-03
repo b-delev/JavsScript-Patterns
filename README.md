@@ -8,7 +8,7 @@
 
 [Single var Pattern](Single var Pattern)
 
-[Hoisting: A Problem with Scattered vars](Hoisting: A Problem with Scattered vars)
+[Hoisting\: A Problem with Scattered vars](Hoisting\: A Problem with Scattered vars)
 
 [for Loops](for Loops)
 
@@ -134,6 +134,7 @@ function foo() {
 }
 ```
 
+<a name="ess to the Global Object"></a>
 ##Access to the Global Object
 ```javascript
 var global = (function () { 
@@ -141,6 +142,7 @@ var global = (function () {
 }());
 ```
 
+<a name="ingle var Pattern"></a>
 ##Single var Pattern
 ```javascript
 function func() { 
@@ -165,6 +167,7 @@ function updateElement() {
 }
 ```
 
+<a name="oisting: A Problem with Scattered vars"></a>
 ##Hoisting: A Problem with Scattered vars
 
 For JavaScript, as long as a variable is in the same scope (same function), it’s considered declared, even when it’s used before the var declaration. 
@@ -190,6 +193,7 @@ alert(myname); // "local" }
 func();
 ```
 
+<a name="or Loops"></a>
 ##for Loops
 In for loops you iterate over arrays or array-like objects such as arguments and HTMLCollection objects. The usual for loop pattern looks like the following:
 
@@ -249,6 +253,7 @@ while (i--) {
 ```
 
 
+<a name="or-in Loops (enumeration) "></a>
 ##for-in Loops (enumeration) 
 
 Used for loop through objects.
@@ -281,6 +286,7 @@ for (i in man) {
 }
 ```
 
+<a name="(Not) Augmenting Built-in Prototypes"></a>
 ## (Not) Augmenting Built-in Prototypes
 Augmenting the prototype property of constructor functions is a powerful way to add functionality.
 ```javascript
@@ -291,6 +297,7 @@ if (typeof Object.protoype.myMethod !== "function") {
 }
 ```
 
+<a name="switch Pattern"></a>
 ## switch Pattern
 ``` javascript
 var inspect_me = 0, result = '';
@@ -306,6 +313,7 @@ default:
 }
 ```
 
+<a name="Avoiding Implied Typecasting"></a>
 ## Avoiding Implied Typecasting
 To avoid confusion caused by the implied typecasting, always use the === and !== operators that check both the values and the type of the expressions you compare
 
@@ -321,6 +329,7 @@ if (zero == false) {
 }
 ```
 
+<a name="Avoiding eval()"></a>
 ## Avoiding eval()
 
 If you spot the use of eval() in your code, remember the mantra “eval() is evil.” This function takes an arbitrary string and executes it as JavaScript code.
@@ -350,6 +359,7 @@ setTimeout(function () {
 ```
 
 
+<a name="Number Conversions with parseInt()"></a>
 ## Number Conversions with parseInt()
 Using parseInt() you can get a numeric value from a string. 
 ``` javascript
@@ -363,6 +373,7 @@ Alternative ways to convert a string to a number include:
 Number("08") // 8
 ```
 
+<a name="Indentation"></a>
 ## Indentation
 Code without indentation is impossible to read.
 ``` javascript 
@@ -387,6 +398,7 @@ function outer(a, b) {
 }
 ```
 
+<a name="Curly Braces"></a>
 ## Curly Braces
 Curly braces should always be used, even in cases when they are optional. 
 ``` javascript 
@@ -403,6 +415,7 @@ if (true) {
 	alert(2); 
 }
 ```
+<a name="Opening Brace Location"></a>
 ## Opening Brace Location
 Best practice is to have opening brace on the same row.
 
@@ -415,6 +428,7 @@ function func() {
 }
 ```
 
+<a name="White Space"></a>
 ## White Space
 
 Good places to use a white space include:
@@ -443,12 +457,14 @@ if (a && b && c) {
 }
 ```
 
+<a name="Capitalizing Constructors"></a>
 ## Capitalizing Constructors
 JavaScript doesn’t have classes but has constructor functions invoked with new:
 ```javascript
 var adam = new Person();
 ```
 
+<a name="Separating Words"></a>
 ## Separating Words
 For your constructors, you can use upper camel case, as in MyConstructor(), and for function and method names, you can use lower camel case, as in myFunction(), calculateArea() and getFirstName().
 
@@ -465,12 +481,14 @@ Following are some varieties to the _private convention:
 
 • In Firefox some internal properties not technically part of the language are available, and they are named with a two underscores prefix and a two underscore suffix, such as __proto__ and __parent__
 
+<a name="Writing Comments"></a>
 ## Writing Comments
 
 You have to comment your code, even if it’s unlikely that someone other than you will ever touch it. Often when you’re deep into a problem you think it’s obvious what the code does, but when you come back to the code after a week, you have a hard time remembering how it worked exactly.
 
 The most important habit, yet hardest to follow, is to keep the com- ments up to date, because outdated comments can mislead and be much worse than no comments at all.
 
+<a name="Writing API Docs"></a>
 ## Writing API Docs
 
 For JavaScript there are two excellent tools, both free and open source: 
@@ -484,6 +502,7 @@ YUIDoc (http://yuilibrary.com/projects/yuidoc).
 • Publishing the results of the tool, which are most often HTML pages
 
 
+<a name="YUIDoc Example"></a>
 ## YUIDoc Example
 The contents of app.js starts like this:
 
@@ -547,12 +566,15 @@ Lists the arguments that a function takes. The types of the parameters are in cu
 @return
 Like @param, only it describes the value returned by the method and has no name.
 
+<a name="Writing to Be Read"></a>
 ## Writing to Be Read
 Writing the comments for the API doc blocks is not only a lazy way to provide reference documentation, but it also serves another purpose—improving code quality by making you revisit your code.
 
+<a name="Minify...In Production"></a>
 ## Minify...In Production
 Minification is the process of eliminating white space, comments, and other nonessential parts of the JavaScript code to decrease the size of the JavaScript files that need to be transferred from the server to the browser. 
 
+<a name="Run JSLint"></a>
 ## Run JSLint
 • Unreachable code
 
@@ -567,6 +589,7 @@ Minification is the process of eliminating white space, comments, and other none
 
 # Literals and Constructors
 
+<a name="Object Literal"></a>
 ## Object Literal
 When you think about objects in JavaScript, simply think about hash tables of key- value pairs (similar to what are called “associative arrays” in other languages).
 
@@ -605,6 +628,7 @@ var dog = {
 
 You'll see “blank object” and “empty object” in a few places throughout this book. It’s important to understand that this is for simplicity and there’s no such thing as an empty object in JavaScript. Even the simplest {} object already has properties and methods inherited from Object.prototype. By “empty” we’ll understand an object that has no own properties other than the inherited ones.
 
+<a name="The Object Literal Syntax"></a>
 ## The Object Literal Syntax
 • Wrap the object in curly braces ({ and }). 
 
@@ -618,6 +642,7 @@ closing }.
 
 
 
+<a name="Objects from a Constructor"></a>
 ## Objects from a Constructor
 You can create objects using your own constructor functions or using some of the built- in constructors such as Object(), Date(), String() and so on.
 ```javascript
@@ -628,6 +653,7 @@ var car = {goes: "far"};
 var car = new Object();
 car.goes = "far";
 ```
+<a name="Object Constructor Catch"></a>
 ## Object Constructor Catch
 Following are a few examples of passing a number, a string, and a boolean value to new Object(); the result is that you get objects created with a different constructor:
 ```javascript
@@ -653,6 +679,7 @@ var o = new Object(true);
 console.log(o.constructor === Boolean); // true
 ```
 
+<a name=" Custom Constructor Functions"></a>
 ##  Custom Constructor Functions
 
 ```javascript
@@ -668,31 +695,45 @@ var adam = new Person("Adam");
 adam.say(); // "I am Adam"
 ```
 
+<a name="Constructor’s Return Values"></a>
 ## Constructor’s Return Values
 
+<a name="Patterns for Enforcing new"></a>
 ## Patterns for Enforcing new
 
+<a name="Using that"></a>
 ## Using that
 
+<a name="Self-Invoking Constructor"></a>
 ## Self-Invoking Constructor
 
+<a name="Array Literal"></a>
 ## Array Literal
 
+<a name="Array Literal Syntax"></a>
 ## Array Literal Syntax
 
+<a name="Array Constructor Curiousness"></a>
 ## Array Constructor Curiousness
 
+<a name="Check for Array-ness"></a>
 ## Check for Array-ness
 
+<a name="JSON"></a>
 ## JSON
 
+<a name="Working with JSON"></a>
 ## Working with JSON
 
+<a name="Regular Expression Literal"></a>
 ## Regular Expression Literal
 
+<a name="Regular Expression Literal Syntax"></a>
 ## Regular Expression Literal Syntax
 
+<a name="Primitive Wrappers"></a>
 ## Primitive Wrappers
 
+<a name="Error Objects"></a>
 ## Error Objects
 
