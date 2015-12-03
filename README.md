@@ -27,7 +27,7 @@ console.dir({one: 1, two: {three: 3}});
 
 It is possible not to use console.log or console.dir when testing in console.
 
-<a name="Minimizing Globals">##Minimizing Globals</a>
+<a name="Minimizing Globals"></a>##Minimizing Globals
 ```javascript
 myglobal = "hello"; // antipattern 
 console.log(myglobal); // "hello" 
