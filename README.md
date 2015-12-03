@@ -481,14 +481,105 @@ Minification is the process of eliminating white space, comments, and other none
 # Literals and Constructors
 
 ## Object Literal
+When you think about objects in JavaScript, simply think about hash tables of key- value pairs (similar to what are called “associative arrays” in other languages).
+
+```javascript 
+// start with an empty object 
+var dog = {};
+// add one property 
+dog.name = "Benji";
+// now add a method 
+dog.getName = function () {
+	return dog.name; 
+};
+//Change the values of properties and methods, for example:
+dog.getName = function () {
+	// redefine the method to return 
+	// a hardcoded value
+	return "Fido";
+};
+//Remove properties/methods completely:
+delete dog.name;
+//Add more properties and methods:
+dog.say = function () {
+	return "Woof!"; 
+};
+dog.fleas = true;
+
+//The object literal pattern enables you to add functionality to the object at the time of creation
+var dog = {
+	name: "Benji",
+	getName: function () {
+		return this.name; 
+		}
+};
+
+```
+
+You'll see “blank object” and “empty object” in a few places throughout this book. It’s important to understand that this is for simplicity and there’s no such thing as an empty object in JavaScript. Even the simplest {} object already has properties and methods inherited from Object.prototype. By “empty” we’ll understand an object that has no own properties other than the inherited ones.
 
 ## The Object Literal Syntax
+• Wrap the object in curly braces ({ and }). 
+
+• Comma-delimit the properties and methods inside the object. At railing comma
+after the last name-value pair is allowed but produces errors in IE, so don’t use it.
+
+• Separate property names and property values with a colon.
+
+• When you assign the object to a variable, don’t forget the semicolon after the
+closing }.
+
+
 
 ## Objects from a Constructor
-
+You can create objects using your own constructor functions or using some of the built- in constructors such as Object(), Date(), String() and so on.
+```javascript
+// one way -- using a literal 
+var car = {goes: "far"};
+// another way -- using a built-in constructor 
+// warning: this is an antipattern
+var car = new Object();
+car.goes = "far";
+```
 ## Object Constructor Catch
+Following are a few examples of passing a number, a string, and a boolean value to new Object(); the result is that you get objects created with a different constructor:
+```javascript
+// Warning: antipatterns ahead
+// an empty object 
+var o = new Object();
+console.log(o.constructor === Object); // true
+
+// a number object
+var o = new Object(1); 
+console.log(o.constructor === Number); // true 
+console.log(o.toFixed(2)); // "1.00"
+
+// a string object
+var o = new Object("I am a string"); 
+console.log(o.constructor === String); // true 
+// normal objects don't have a substring()
+// method but string objects do 
+console.log(typeof o.substring); // "function"
+
+// a boolean object
+var o = new Object(true); 
+console.log(o.constructor === Boolean); // true
+```
 
 ##  Custom Constructor Functions
+
+```javascript
+//Person constructor function could be defined:
+var Person = function (name) { 
+	this.name = name;
+	this.say = function () {
+		return "I am " + this.name; 
+	};
+};
+
+var adam = new Person("Adam"); 
+adam.say(); // "I am Adam"
+```
 
 ## Constructor’s Return Values
 
