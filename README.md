@@ -1,6 +1,6 @@
 # Notes on JavsScript Patterns
 
-(####Minimizing Globals)
+[####Minimizing Globals](test)
 
 JavaScript: Concepts
 
