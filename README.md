@@ -459,3 +459,20 @@ Lists the arguments that a function takes. The types of the parameters are in cu
 
 @return
 Like @param, only it describes the value returned by the method and has no name.
+
+## Writing to Be Read
+Writing the comments for the API doc blocks is not only a lazy way to provide reference documentation, but it also serves another purpose—improving code quality by making you revisit your code.
+
+## Minify...In Production
+Minification is the process of eliminating white space, comments, and other nonessential parts of the JavaScript code to decrease the size of the JavaScript files that need to be transferred from the server to the browser. 
+
+## Run JSLint
+• Unreachable code
+
+• Using variables before they are defined
+
+• Unsafe UTF characters
+
+• Using void, with, or eval
+
+• Improperly escaped characters in regular expressions
