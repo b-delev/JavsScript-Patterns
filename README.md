@@ -1,5 +1,6 @@
 # Notes on JavsScript Patterns
 
+(####Minimizing Globals)
 
 JavaScript: Concepts
 
@@ -26,7 +27,7 @@ console.dir({one: 1, two: {three: 3}});
 
 It is possible not to use console.log or console.dir when testing in console.
 
-##Minimizing Globals
+[##Minimizing Globals]
 ```javascript
 myglobal = "hello"; // antipattern 
 console.log(myglobal); // "hello" 
