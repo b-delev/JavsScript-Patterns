@@ -2,89 +2,89 @@
 
 ###Table of contents
 <hr>
-[Minimizing Globals](Minimizing Globals)
+[Minimizing Globals](#Minimizing Globals)
 
-[Access to the Global Object](Access to the Global Object)
+[Access to the Global Object](#Access to the Global Object)
 
-[Single var Pattern](Single var Pattern)
- 
-[Hoisting\: A Problem with Scattered vars](Hoisting\: A Problem with Scattered vars)
+[Single var Pattern](#Single var Pattern)
 
-[for Loops](for Loops)
+[Hoisting\: A Problem with Scattered vars](#Hoisting\: A Problem with Scattered vars)
 
-[for-in Loops (enumeration)](for-in Loops (enumeration))
+[for Loops](#for Loops)
 
-[(Not) Augmenting Built-in Prototypes]((Not) Augmenting Built-in Prototypes)
+[for-in Loops (enumeration)](#for-in Loops (enumeration))
 
-[switch Pattern](switch Pattern)
+[(Not) Augmenting Built-in Prototypes](#(Not) Augmenting Built-in Prototypes)
 
-[Avoiding Implied Typecasting](Avoiding Implied Typecasting)
+[switch Pattern](#switch Pattern)
 
-[Avoiding eval()](Avoiding eval())
+[Avoiding Implied Typecasting](#Avoiding Implied Typecasting)
 
-[Number Conversions with parseInt()](Number Conversions with parseInt())
+[Avoiding eval()](#Avoiding eval())
 
-[Indentation](Indentation)
+[Number Conversions with parseInt()](#Number Conversions with parseInt())
 
-[Curly Braces](Curly Braces)
+[Indentation](#Indentation)
 
-[Opening Brace Location](Opening Brace Location)
+[Curly Braces](#Curly Braces)
 
-[White Space](White Space)
+[Opening Brace Location](#Opening Brace Location)
 
-[Capitalizing Constructors](Capitalizing Constructors)
+[White Space](#White Space)
 
-[Separating Words](Separating Words)
+[Capitalizing Constructors](#Capitalizing Constructors)
 
-[Writing Comments](Writing Comments)
+[Separating Words](#Separating Words)
 
-[Writing API Docs](Writing API Docs)
+[Writing Comments](#Writing Comments)
 
-[YUIDoc Example](YUIDoc Example)
+[Writing API Docs](#Writing API Docs)
 
-[Writing to Be Read](Writing to Be Read)
+[YUIDoc Example](#YUIDoc Example)
 
-[Minify...In Production](Minify...In Production)
+[Writing to Be Read](#Writing to Be Read)
 
-[Run JSLint](Run JSLint)
+[Minify...In Production](#Minify...In Production)
 
-[Object Literal](Object Literal)
+[Run JSLint](#Run JSLint)
 
-[The Object Literal Syntax](The Object Literal Syntax)
+[Object Literal](#Object Literal)
 
-[Objects from a Constructor](Objects from a Constructor)
+[The Object Literal Syntax](#The Object Literal Syntax)
 
-[Object Constructor Catch](Object Constructor Catch)
+[Objects from a Constructor](#Objects from a Constructor)
 
-[Custom Constructor Functions]( Custom Constructor Functions)
+[Object Constructor Catch](#Object Constructor Catch)
 
-[Constructor’s Return Values](Constructor’s Return Values)
+[Custom Constructor Functions](# Custom Constructor Functions)
 
-[Patterns for Enforcing new](Patterns for Enforcing new)
+[Constructor’s Return Values](#Constructor’s Return Values)
 
-[Using that](Using that)
+[Patterns for Enforcing new](#Patterns for Enforcing new)
 
-[Self-Invoking Constructor](Self-Invoking Constructor)
+[Using that](#Using that)
 
-[Array Literal](Array Literal)
+[Self-Invoking Constructor](#Self-Invoking Constructor)
 
-[Array Literal Syntax](Array Literal Syntax)
+[Array Literal](#Array Literal)
 
-[Array Constructor Curiousness](Array Constructor Curiousness)
+[Array Literal Syntax](#Array Literal Syntax)
 
-[Check for Array-ness](Check for Array-ness)
+[Array Constructor Curiousness](#Array Constructor Curiousness)
 
-[JSON](JSON)
+[Check for Array-ness](#Check for Array-ness)
 
-[Working with JSON](Working with JSON)
+[JSON](#JSON)
 
-[Regular Expression Literal](Regular Expression Literal)
+[Working with JSON](#Working with JSON)
 
-[Regular Expression Literal Syntax](Regular Expression Literal Syntax)
+[Regular Expression Literal](#Regular Expression Literal)
 
-[Primitive Wrappers](Primitive Wrappers)
+[Regular Expression Literal Syntax](#Regular Expression Literal Syntax)
 
-[Error Objects](Error Objects)
+[Primitive Wrappers](#Primitive Wrappers)
+
+[Error Objects](#Error Objects)
 <hr>
 
 ##JavaScript: Concepts
