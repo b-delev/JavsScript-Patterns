@@ -194,3 +194,10 @@ for (i in man) {
 }
 ```
 
+## (Not) Augmenting Built-in Prototypes
+Augmenting the prototype property of constructor functions is a powerful way to add functionality.
+```javascript
+if (typeof Object.protoype.myMethod !== "function") { Object.protoype.myMethod = function () {
+// implementation... };
+}
+```
