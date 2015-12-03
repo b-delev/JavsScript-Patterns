@@ -345,7 +345,7 @@ their values: var o = {a: 1, b: 2};
 
 • Before the curly braces in function declarations: function myFunc() {}
 
-• Afterfunctioninanonymousfunctionexpressions:var myFunc = function () {};
+• After function in anonymous function expressions: var myFunc = function () {};
 
 ``` javascript
 var d = 0,
