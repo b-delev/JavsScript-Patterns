@@ -85,6 +85,33 @@
 [Primitive Wrappers](#Primitive Wrappers)
 
 [Error Objects](#Error Objects)
+
+Functions
+Background
+Disambiguation of Terminology
+Declarations Versus Expressions: Names and Hoisting
+Function’s name Property
+Function Hoisting
+Callback Pattern
+A Callback Example
+Callbacks and Scope
+Asynchronous Event Listeners
+Timeouts
+Callbacks in Libraries
+Returning Functions
+Self-Defining Functions
+Immediate Functions
+Parameters of an Immediate Function
+Returned Values from Immediate Functions
+Benefits and Usage
+Immediate Object Initialization
+Init-Time Branching
+Function Properties—A Memoization Pattern
+Curry
+Function Application
+Partial Application
+Currying
+When to Use Currying
 <hr>
 
 ##JavaScript: Concepts
