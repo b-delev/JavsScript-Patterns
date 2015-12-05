@@ -895,10 +895,61 @@ var re = new RegExp("\\\\", "gm");
 
 <a name="Regular Expression Literal Syntax"></a>
 ## Regular Expression Literal Syntax
+The regular expression literal notation uses forward slashes to wrap the regular expression pattern used for matching. Following the second slash, you can put the pattern modifiers in the form of unquoted letters:
+• g—Global matching
+• m—Multiline
+• i—Case-insensitive matching
+
+```javascript
+var re = /pattern/gmi;
+
+var no_letters = "abc123XYZ".replace(/[a-z]/gi, ""); 
+console.log(no_letters); // 123
+```
 
 <a name="Primitive Wrappers"></a>
 ## Primitive Wrappers
+JavaScript has five primitive value types: number, string, boolean, null, and undefined. 
+Build in constructurs: Number(), String(), and Boolean()
+```javascript
+// a primitive number
+var n = 100;
+console.log(typeof n); // "number"
+// a Number object
+var nobj = new Number(100); 
+console.log(typeof nobj); // "object"
+
+// avoid these:
+var s = new String("my string"); 
+var n = new Number(101);
+var b = new Boolean(true);
+// better and simpler: 
+var s = "my string"; 
+var n = 101;
+var b = true;
+```
+
+Number objects have methods such as toFixed() and toExponential(). 
+String objects have substring(), charAt(), and toLowerCase() methods (among others) and a length property.
 
 <a name="Error Objects"></a>
 ## Error Objects
+JavaScript has a number of built-in error constructors, such as Error(), SyntaxError(), TypeError(), and others, which are used with the throw statement. 
 
+```javascript
+try {
+// something bad happened, throw an error 
+	throw {
+		name: "MyErrorType", // custom error type
+		message: "oops",
+		extra: "This was rather embarrassing",
+		remedy: genericErrorHandler // who should handle it
+	};
+} catch (e) {
+	// inform the user 
+	alert(e.message); // "oops"
+	// gracefully handle the error
+	e.remedy(); // calls genericErrorHandler() 
+
+}
+```
