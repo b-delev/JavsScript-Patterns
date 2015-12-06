@@ -86,32 +86,32 @@
 
 [Error Objects](#Error Objects)
 
-Functions
-Background
-Disambiguation of Terminology
-Declarations Versus Expressions: Names and Hoisting
-Function’s name Property
-Function Hoisting
-Callback Pattern
-A Callback Example
-Callbacks and Scope
-Asynchronous Event Listeners
-Timeouts
-Callbacks in Libraries
-Returning Functions
-Self-Defining Functions
-Immediate Functions
-Parameters of an Immediate Function
-Returned Values from Immediate Functions
-Benefits and Usage
-Immediate Object Initialization
-Init-Time Branching
-Function Properties—A Memoization Pattern
-Curry
-Function Application
-Partial Application
-Currying
-When to Use Currying
+[Functions](#Functions)
+[Background](#Background)
+[Disambiguation of Terminology](#Disambiguation of Terminology)
+[Declarations Versus Expressions: Names and Hoisting](#Declarations Versus Expressions: Names and Hoisting)
+[Function’s name Property](#Function’s name Property)
+[Function Hoisting](#Function Hoisting)
+[Callback Pattern](#Callback Pattern)
+[A Callback Example](#A Callback Example)
+[Callbacks and Scope](#Callbacks and Scope)
+[Asynchronous Event Listeners](#Asynchronous Event Listeners)
+[Timeouts](#Timeouts)
+[Callbacks in Libraries](#Callbacks in Libraries)
+[Returning Functions](#Returning Functions)
+[Self-Defining Functions](#Self-Defining Functions)
+[Immediate Functions](#Immediate Functions)
+[Parameters of an Immediate Function](#Parameters of an Immediate Function)
+[Returned Values from Immediate Functions](#Returned Values from Immediate Functions)
+[Benefits and Usage](#Benefits and Usage)
+[Immediate Object Initialization](#Immediate Object Initialization)
+[Init-Time Branching](#Init-Time Branching)
+[Function Properties—A Memoization Pattern](#Function Properties—A Memoization Pattern)
+[Curry](#Curry)
+[Function Application](#Function Application)
+[Partial Application](#Partial Application)
+[Currying](#Currying)
+[When to Use Currying](#When to Use Currying)
 <hr>
 
 ##JavaScript: Concepts
@@ -980,3 +980,58 @@ try {
 
 }
 ```
+
+
+
+<a name="Functions"></a>
+##Functions
+<a name="Background"></a>
+##Background
+<a name="Disambiguation of Terminology"></a>
+##Disambiguation of Terminology
+<a name="Declarations Versus Expressions: Names and Hoisting"></a>
+##Declarations Versus Expressions: Names and Hoisting
+<a name="Function’s name Property"></a>
+##Function’s name Property
+<a name="Function Hoisting"></a>
+##Function Hoisting
+<a name="Callback Pattern"></a>
+##Callback Pattern
+<a name="A Callback Example"></a>
+##A Callback Example
+<a name="Callbacks and Scope"></a>
+##Callbacks and Scope
+<a name="Asynchronous Event Listeners"></a>
+##Asynchronous Event Listeners
+<a name="Timeouts"></a>
+##Timeouts
+<a name="Callbacks in Libraries"></a>
+##Callbacks in Libraries
+<a name="Returning Functions"></a>
+##Returning Functions
+<a name="Self-Defining Functions"></a>
+##Self-Defining Functions
+<a name="Immediate Functions"></a>
+##Immediate Functions
+<a name="Parameters of an Immediate Function"></a>
+##Parameters of an Immediate Function
+<a name="Returned Values from Immediate Functions"></a>
+##Returned Values from Immediate Functions
+<a name="Benefits and Usage"></a>
+##Benefits and Usage
+<a name="Immediate Object Initialization"></a>
+##Immediate Object Initialization
+<a name="Init-Time Branching"></a>
+##Init-Time Branching
+<a name="Function Properties—A Memoization Pattern"></a>
+##Function Properties—A Memoization Pattern
+<a name="Curry"></a>
+##Curry
+<a name="Function Application"></a>
+##Function Application
+<a name="Partial Application"></a>
+##Partial Application
+<a name="Currying"></a>
+##Currying
+<a name="When to Use Currying"></a>
+##When to Use Currying
