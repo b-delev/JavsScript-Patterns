@@ -1010,13 +1010,79 @@ try {
 
 
 <a name="Functions"></a>
-##Functions
+#Functions
 <a name="Background"></a>
 ##Background
+There are two main features of the functions in JavaScript that make them specia:
+- functions are first-class objects 
+- provide scope
+
+Functions are objects that:
+
+• Can be created dynamically at runtime, during the execution of the program
+• Can be assigned to variables, can have their references copied to other variables, can be augmented, and, except for a few special cases, can be deleted
+• Can be passed as arguments to other functions and can also be returned by other functions
+• Can have their own properties and methods
+
+```javascript
+// antipattern
+// for demo purposes only
+var add = new Function('a, b', 'return a + b'); 
+add(1, 2); // returns 3
+```
+
 <a name="Disambiguation of Terminology"></a>
 ##Disambiguation of Terminology
+```javascript
+// function declarations
+function foo(a, b) {
+	return a + b;
+}
+
+// named function expression 
+var add = function add(a, b) {
+	return a + b; 
+};
+
+// function expression, a.k.a. anonymous function 
+var add = function (a, b) {
+	return a + b; 
+};
+```
 <a name="Declarations Versus Expressions: Names and Hoisting"></a>
 ##Declarations Versus Expressions: Names and Hoisting
+```javascript
+// this is a function expression,
+// pased as an argument to the function `callMe` 
+callMe(function () {
+	// I am an unnamed function expression
+	// also known as an anonymous function 
+});
+
+// this is a named function expression 
+callMe(function me() {
+	// I am a named function expression
+	// and my name is "me" 
+});
+// another function expression 
+var myobject = {
+	say: function () {
+		// I am a function expression 
+	}
+};
+```
+
+Here’s an example of the allowed usage of function declarations, where all the functions foo(), bar(), and local() are defined using the function declaration pattern:
+
+```javascript
+// global scope 
+function foo() {}
+function local() { // local scope
+	function bar() {}
+	return bar; 
+}
+```
+
 <a name="Function’s name Property"></a>
 ##Function’s name Property
 <a name="Function Hoisting"></a>
