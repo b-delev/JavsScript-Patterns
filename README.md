@@ -1085,12 +1085,125 @@ function local() { // local scope
 
 <a name="Function’s name Property"></a>
 ##Function’s name Property
+This property is not standard but available in many environments.
+```javascript
+function foo() {} // declaration
+var bar = function () {}; // expression
+var baz = function baz() {}; // named expression
+foo.name; // "foo" 
+bar.name; // "" 
+baz.name; // "baz" 
+```
+
 <a name="Function Hoisting"></a>
 ##Function Hoisting
+The term hoisting is not defined in ECMAScript, but it’s common and a good way to describe the behavior.
+```javascript
+// antipattern
+// for illustration only
+// global functions 
+function foo() {
+	alert('global foo'); 
+}
+function bar() {
+	alert('global bar'); 
+}
+function hoistMe() {
+	console.log(typeof foo); // "function"
+	console.log(typeof bar); // "undefined"
+	foo(); // "local foo"
+	bar(); // TypeError: bar is not a function
+	// function declaration:
+	// variable 'foo' and its implementation both get hoisted
+	function foo() {
+	alert('local foo'); }
+	// function expression:
+	// only variable 'bar' gets hoisted // not the implementation
+	var bar = function () {
+	alert('local bar'); };
+} 
+hoistMe();
+```
+
 <a name="Callback Pattern"></a>
 ##Callback Pattern
+Functions are objects, which means that they can be passed as arguments to other functions. 
+Callback function
+```javascript
+function writeCode(callback) { 
+	// do something... 
+	callback();
+	// ...
+}
+function introduceBugs() {
+	// ... make bugs 
+}
+writeCode(introduceBugs);
+
+```
+
 <a name="A Callback Example"></a>
 ##A Callback Example
+```javascript
+var findNodes = function () {
+		var i = 100000, // big, heavy loop
+		nodes = [], // stores the result
+		found; 	// the next node found 
+	while (i) {
+		i -= 1;
+		// complex logic here... 
+		nodes.push(found);
+	}
+	return nodes; 
+};
+
+var hide = function (nodes) {
+	var i = 0, 
+	    max = nodes.length; 
+	for (; i < max; i += 1) {
+		nodes[i].style.display = "none"; 
+	}
+};
+// executing the functions 
+hide(findNodes());
+
+// refactored findNodes() to accept a callback 
+var findNodes = function (callback) {
+	var i = 100000, 
+	    nodes = [],
+	found;
+	// check if callback is callable
+	if (typeof callback !== "function") {
+		callback = false; 
+	}
+	while (i) { 
+		i -= 1;
+		// complex logic here...
+		// now callback: 
+		if (callback) {
+			callback(found); 
+		}
+		nodes.push(found); 
+	}
+	return nodes; 
+};
+
+
+// a callback function
+var hide = function (node) {
+	node.style.display = "none"; 
+};
+// find the nodes and hide them as you go 
+findNodes(hide);
+
+
+// passing an anonymous callback 
+findNodes(function (node) {
+	node.style.display = "block";
+});
+```
+
+
 <a name="Callbacks and Scope"></a>
 ##Callbacks and Scope
 <a name="Asynchronous Event Listeners"></a>
