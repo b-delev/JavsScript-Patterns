@@ -87,31 +87,57 @@
 [Error Objects](#Error Objects)
 
 [Functions](#Functions)
+
 [Background](#Background)
+
 [Disambiguation of Terminology](#Disambiguation of Terminology)
+
 [Declarations Versus Expressions: Names and Hoisting](#Declarations Versus Expressions: Names and Hoisting)
+
 [Function’s name Property](#Function’s name Property)
+
 [Function Hoisting](#Function Hoisting)
+
 [Callback Pattern](#Callback Pattern)
+
 [A Callback Example](#A Callback Example)
+
 [Callbacks and Scope](#Callbacks and Scope)
+
 [Asynchronous Event Listeners](#Asynchronous Event Listeners)
+
 [Timeouts](#Timeouts)
+
 [Callbacks in Libraries](#Callbacks in Libraries)
+
 [Returning Functions](#Returning Functions)
+
 [Self-Defining Functions](#Self-Defining Functions)
+
 [Immediate Functions](#Immediate Functions)
+
 [Parameters of an Immediate Function](#Parameters of an Immediate Function)
+
 [Returned Values from Immediate Functions](#Returned Values from Immediate Functions)
+
 [Benefits and Usage](#Benefits and Usage)
+
 [Immediate Object Initialization](#Immediate Object Initialization)
+
 [Init-Time Branching](#Init-Time Branching)
+
 [Function Properties—A Memoization Pattern](#Function Properties—A Memoization Pattern)
+
 [Curry](#Curry)
+
 [Function Application](#Function Application)
+
 [Partial Application](#Partial Application)
+
 [Currying](#Currying)
+
 [When to Use Currying](#When to Use Currying)
+
 <hr>
 
 ##JavaScript: Concepts
