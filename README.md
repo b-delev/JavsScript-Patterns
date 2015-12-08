@@ -1206,22 +1206,197 @@ findNodes(function (node) {
 
 <a name="Callbacks and Scope"></a>
 ##Callbacks and Scope
+In the previous examples, the part where the callback is executed was like so:
+```javascript
+callback(parameters);
+
+
+myapp:
+var myapp = {};
+myapp.color = "green"; 
+myapp.paint = function (node) {
+	node.style.color = this.color; 
+};
+//The function findNodes() does something like this:
+var findNodes = function (callback) { 
+// ...
+	if (typeof callback === "function") {
+		callback(found); 
+	}
+	// ... 
+};
+```
+If you call findNodes(myapp.paint), it won’t work as expected, because this.color will not be defined.
+The solution to this problem is to pass the callback function and in addition pass the object this callback belongs to:
+```javascript
+findNodes(myapp.paint, myapp);
+```
+Then you also need to modify findNodes() to bind that object you pass:
+```javascript
+var findNodes = function (callback, callback_obj) { 
+	//...
+	if (typeof callback === "function") {
+		callback.call(callback_obj, found); 
+	}
+	// ... 
+};
+
+findNodes(myapp.paint, myapp);
+//can become:
+findNodes("paint", myapp);
+
+//Then findNodes() would do something along these lines:
+var findNodes = function (callback, callback_obj) {
+	if (typeof callback === "string") {
+		callback = callback_obj[callback]; 
+	}
+	//...
+	if (typeof callback === "function") {
+		callback.call(callback_obj, found); 
+	}
+	// ... 
+};
+
+
+```
 <a name="Asynchronous Event Listeners"></a>
 ##Asynchronous Event Listeners
+The callback pattern has many everyday uses; for example, when you attach an event listener to an element on a page, you’re actually providing a pointer to a callback func- tion that will be called when the event occurs. 
+```javascript
+document.addEventListener("click", console.log, false);
+```
+Then the user interacts with the page and causes various events to fire, such as click, keypress, mouseover, mousemove, and so on. 
+
 <a name="Timeouts"></a>
 ##Timeouts
+Another example of the callback pattern in the wild is when you use the timeout meth- ods provided by the browser’s window object: setTimeout() and setInterval(). 
+```javascript
+var thePlotThickens = function () {
+	console.log('500ms later...'); 
+};
+setTimeout(thePlotThickens, 500);
+```
+!!! Passing the string "thePlotThickens()" instead of a func- tion pointer is a common antipattern similar to eval().
+
 <a name="Callbacks in Libraries"></a>
 ##Callbacks in Libraries
+Focus on core functionality and provide “hooks” in the form of callbacks, which will allow the library methods to be easily built upon, extended, and customized.
+
 <a name="Returning Functions"></a>
 ##Returning Functions
+Functions are objects, so they can be used as return values. 
+
+```javascript
+var setup = function () { 
+	alert(1);
+		return function () {
+			alert(2); 
+		};
+};
+// using the setup function 
+var my = setup(); // alerts 1 
+my(); // alerts 2
+
+//COUNTER EXAMPLE
+
+var setup = function () { 
+	var count = 0;
+	return function () {
+		return (count += 1); 
+	};
+};
+// usage
+var next = setup(); 
+next(); // returns 1
+next(); // 2 
+next(); // 3
+```
 <a name="Self-Defining Functions"></a>
 ##Self-Defining Functions
+Functions can be defined dynamically and can be assigned to variables.
+Another name for this pattern is lazy function definition.
+```javascript
+var scareMe = function () { 
+	alert("Boo!");
+	scareMe = function () {
+		alert("Double boo!"); 
+	};
+};
+// using the self-defining function 
+scareMe(); // Boo!
+scareMe(); // Double boo!
+
+
+// 1. adding a new property 
+scareMe.property = "properly";
+
+// 2. assigning to a different name 
+var prank = scareMe;
+
+// 3. using as a method 
+var spooky = {
+	boo: scareMe 
+};
+// calling with a new name
+prank(); // "Boo!"
+prank(); // "Boo!" 
+console.log(prank.property); // "properly"
+// calling as a method
+spooky.boo(); // "Boo!"
+spooky.boo(); // "Boo!" 
+console.log(spooky.boo.property); // "properly"
+// using the self-defined function 
+scareMe(); // Double boo!
+scareMe(); // Double boo! 
+console.log(scareMe.property); // undefined
+```
+As you can see, the self-definition didn’t happen as you probably expected when the function was assigned to a new variable. 
+
 <a name="Immediate Functions"></a>
 ##Immediate Functions
+The immediate function pattern is a syntax that enables you to execute a function as soon as it is defined.
+Provides a scope sandbox for your initialization code.
+```javascript
+(function () { 
+	alert('watch out!');
+}());
+
+//Prefered by JSLint:
+(function () { 
+alert('watch out!');
+})();
+
+(function () {
+	var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	    today = new Date(),
+	    msg = 'Today is ' + days[today.getDay()] + ', ' + today.getDate();
+	alert(msg);
+}()); // "Today is Fri, 13"
+```
+
+
 <a name="Parameters of an Immediate Function"></a>
 ##Parameters of an Immediate Function
+You can also pass arguments to immediate functions
+```javascript
+// prints:
+// I met Joe Black on Fri Aug 13 2010 23:26:59 GMT-0800 (PST)
+(function (who, when) {
+	console.log("I met " + who + " on " + when);
+}("Joe Black", new Date()));
+
+(function (global) {
+	// access the global object via `global`
+}(this));
+
+```
+
+
 <a name="Returned Values from Immediate Functions"></a>
 ##Returned Values from Immediate Functions
+
+```javascript
+```
 <a name="Benefits and Usage"></a>
 ##Benefits and Usage
 <a name="Immediate Object Initialization"></a>
