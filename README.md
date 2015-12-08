@@ -1534,13 +1534,218 @@ Here is the moment to mention a word of caution against browser sniffing. When y
 
 <a name="Function Properties—A Memoization Pattern"></a>
 ##Function Properties—A Memoization Pattern
+Functions are objects, so they can have properties. In fact, they do have properties and methods out-of-the-box.  
+Length:
+```javascript
+function func(a, b, c) {} 
+console.log(func.length); // 3
+```
+You can add custom properties to your functions at any time. 
+
+Caching the results of a function is also known as memoization.
+
+```javascript
+var myFunc = function (param) { 
+	if (!myFunc.cache[param]) {
+		var result = {};
+		// ... expensive operation ... 
+		myFunc.cache[param] = result;
+	}
+	return myFunc.cache[param]; 
+};
+// cache storage 
+myFunc.cache = {};
+
+
+var myFunc = function () {
+	var cachekey = JSON.stringify(Array.prototype.slice.call(arguments)),
+	result;
+	if (!myFunc.cache[cachekey]) { 
+		result = {};
+		// ... expensive operation ...
+		myFunc.cache[cachekey] = result; 
+	}
+	return myFunc.cache[cachekey]; 
+};
+// cache storage 
+myFunc.cache = {};
+```
+
+<a name="Configuration Objects"></a>
+##Configuration Objects
+The configuration object pattern is a way to provide cleaner APIs, especially if you’re building a library or any other code that will be consumed by other programs.
+```javascript
+var conf = {
+	username: "batman", 
+	first: "Bruce", 
+	last: "Wayne"
+}; 
+addPerson(conf);
+```
+The pros of the configuration objects are:
+• No need to remember the parameters and their order
+• You can safely skip optional parameters
+• Easier to read and maintain
+• Easier to add and remove parameters
+
+The cons of the configuration objects are:
+• You need to remember the names of the parameters
+• Property names cannot be minified
+
+
 <a name="Curry"></a>
 ##Curry
 <a name="Function Application"></a>
 ##Function Application
+Here’s an example of a function application:
+```javascript
+// define a function
+var sayHi = function (who) {
+	return "Hello" + (who ? ", " + who : "") + "!"; 
+};
+
+// invoke a function
+sayHi(); // "Hello" 
+sayHi('world'); // "Hello, world!"
+
+// apply a function
+sayHi.apply(null, ["hello"]); // "Hello, hello!"
+```
+When a function is a method of an object, there’s no null reference passed around (as in the previous example). Here the object becomes the first argument to apply():
+```javascript
+var alien = {
+	sayHi: function (who) {
+		return "Hello" + (who ? ", " + who : "") + "!"; 
+	}
+};
+alien.sayHi('world'); // "Hello, world!" 
+sayHi.apply(alien, ["humans"]); // "Hello, humans!"
+sayHi.call(alien, "humans"); // "Hello, humans!"
+//APPLY accepts as a second argument ARRAY, CALL accepts ONE PARAMETER, SINGLE VARIABLE
+```
+
 <a name="Partial Application"></a>
 ##Partial Application
+Now that we know that calling a function is actually applying a set of arguments to a function, is it possible to pass just a few of the arguments, not all of them?
+
+```javascript
+// for illustration purposes 
+// not valid JavaScript
+
+// we have this function 
+function add(x, y) {
+	return x + y; 
+}
+
+// and we know the arguments 
+add(5, 4);
+
+// step 1 -- substitute one argument 
+function add(5, y) {
+	return 5 + y; 
+}
+
+// step 2 -- substitute the other argument 
+function add(5, 4) {
+	return 5 + 4; 
+}
+```
+
+Step 1 in this example could be called partial application: we only applied the first argument. When you perform a partial application you don’t get a result (a solution), but you get another function instead.
+
+```javascript
+var add = function (x, y) {
+	return x + y;
+};
+// full application 
+add.apply(null, [5, 4]); // 9
+
+// partial application
+var newadd = add.partialApply(null, [5]); 
+
+// applying an argument to the new function 
+newadd.apply(null, [4]); // 9
+```
 <a name="Currying"></a>
 ##Currying
+Haskell Curry. (The Haskell programming language is also named after him.)
+Currying is a transformation process - we transform a function.
+schönfinkelisation - Moses Schönfinkel, the original inventor of this transformation.
+
+```javascript
+// a curried add()
+// accepts partial list of arguments 
+function add(x, y) {
+	var oldx = x, oldy = y;
+	if (typeof oldy === "undefined") { 
+		// partial
+		return function (newy) {
+			return oldx + newy; 
+		};
+	}
+	// full application 
+	return x + y;
+}
+// test
+typeof add(5); // "function" 
+add(3)(4); // 7
+// create and store a new function 
+var add2000 = add(2000); 
+add2000(10); // 2010
+
+//Compact version
+// a curried add
+// accepts partial list of arguments 
+function add(x, y) {
+	if (typeof y === "undefined") { // partial 
+		return function (y) {
+			return x + y; 
+		};
+	}
+	// full application 
+	return x + y;
+}
+```
+Here is the general-purpose currying function:
+```javascript
+function schonfinkelize(fn) {
+	var slice = Array.prototype.slice,
+	stored_args = slice.call(arguments, 1); 
+	return function () {
+		var new_args = slice.call(arguments), 
+	    	    args = stored_args.concat(new_args);
+		return fn.apply(null, args); 
+	};
+}
+// Now armed with a general-purpose way of making any function curried, let’s give it a try with a few tests:
+
+
+// a normal function 
+function add(x, y) {
+	return x + y; 
+}
+
+// curry a function to get a new function 
+var newadd = schonfinkelize(add, 5); 
+newadd(4); // 9
+
+// another option -- call the new function directly 
+schonfinkelize(add, 6)(7); // 13
+
+// a normal function
+function add(a, b, c, d, e) {
+return a + b + c + d + e; }
+
+// works with any number of arguments 
+schonfinkelize(add, 1, 2, 3)(5, 5); // 16
+
+// two-step currying
+var addOne = schonfinkelize(add, 1); 
+addOne(10, 10, 10, 10); // 41
+var addSix = schonfinkelize(addOne, 2, 3); 
+addSix(5, 5); // 16
+```
+
 <a name="When to Use Currying"></a>
 ##When to Use Currying
+When you find yourself calling the same function and passing mostly the same param- eters, then the function is probably a good candidate for currying. You can create a new function dynamically by partially applying a set of arguments to your function. The new function will keep the repeated parameters stored (so you don’t have to pass them every time) and will use them to pre-fill the full list of arguments that the original function expects.
