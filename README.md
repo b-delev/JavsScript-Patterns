@@ -1396,13 +1396,142 @@ You can also pass arguments to immediate functions
 ##Returned Values from Immediate Functions
 
 ```javascript
+var result = (function () { 
+	return 2 + 2;
+}());
+// OR
+var result = (function () { 
+	return 2 + 2;
+})();
+
+// Another way to achieve the same is to omit the parentheses that wrap the function
+var result = function () {
+	return 2 + 2; 
+}();
 ```
+The example returns primitive integer value.
+IIFE can return eny type of value including another function.
+You can then use the scope of the im- mediate function to privately store some data, specific to the inner function you return.
+
+```javascript
+var getResult = (function () { 
+	var res = 2 + 2;
+	return function () {
+		return res; 
+	};
+}());
+
+// In object definition
+var o = {
+	message: (function () {
+		var who = "me", 
+		    what = "call";
+		return what + " " + who; 
+	}()),
+	getMsg: function () {
+		return this.message; 
+	}
+};
+// usage
+o.getMsg(); // "call me" 
+o.message; // "call me"
+```
+
 <a name="Benefits and Usage"></a>
 ##Benefits and Usage
+You can use the following template to define a piece of functionality; let’s call it module1:
+```javascript
+// module1 defined in module1.js
+(function () {
+	// all the module 1 code ...
+}());
+
+```
+
 <a name="Immediate Object Initialization"></a>
 ##Immediate Object Initialization
+Another way to protect from global scope pollution, similar to the immediate functions pattern previously described, is the following immediate object initialization pattern.
+```javascript
+({
+	// here you can define setting values 
+	// a.k.a. configuration constants 
+	maxwidth: 600,
+	maxheight: 400,
+	// you can also define utility methods 
+	gimmeMax: function () {
+		return this.maxwidth + "x" + this.maxheight; 
+	},
+	
+	// initialize
+	init: function () {
+		console.log(this.gimmeMax());
+		// more init tasks... 
+	}
+}).init();
+
+// Both works
+({...}).init(); 
+({...}.init());
+```
+This pattern is mainly suitable for one-off tasks, and there’s no access to the object after the init() has completed. If you want to keep a ref- erence to the object after it is done, you can easily achieve this by adding return this; at the end of init().
+
 <a name="Init-Time Branching"></a>
 ##Init-Time Branching
+Init-time branching (also called load-time branching) is an optimization pattern.
+
+For example, after you’ve sniffed that XMLHttpRequest is supported as a native object, there’s no chance that the underlying browser will change in the middle of your program execution and all of a sudden you’ll need to deal with ActiveX objects. Because the environment doesn’t change, there’s no reason for your code to keep sniffing (and reaching the same conclusion) every time you need another XHR object.
+
+```javascript
+// BEFORE
+var utils = {
+	addListener: function (el, type, fn) {
+	if (typeof window.addEventListener === 'function') {
+		el.addEventListener(type, fn, false);
+		} else if (typeof document.attachEvent === 'function') { // IE
+			el.attachEvent('on' + type, fn);
+		} else { // older browsers
+			el['on' + type] = fn; 
+		}
+	},
+	removeListener: function (el, type, fn) {
+		// pretty much the same... 
+	}
+};
+
+
+// AFTER
+// the interface 
+var utils = {
+	addListener: null,
+	removeListener: null 
+};
+// the implementation
+if (typeof window.addEventListener === 'function') {
+	utils.addListener = function (el, type, fn) {
+		el.addEventListener(type, fn, false); 
+	};
+	utils.removeListener = function (el, type, fn) {
+		el.removeEventListener(type, fn, false); 
+	};
+} else if (typeof document.attachEvent === 'function') { // IE 
+	utils.addListener = function (el, type, fn) {
+		el.attachEvent('on' + type, fn); 
+	};
+	utils.removeListener = function (el, type, fn) {
+		el.detachEvent('on' + type, fn); 
+	};
+} else { // older browsers
+	utils.addListener = function (el, type, fn) {
+		el['on' + type] = fn; 
+	};
+	utils.removeListener = function (el, type, fn) {
+		el['on' + type] = null; 
+	};
+}
+```
+Here is the moment to mention a word of caution against browser sniffing. When you use this pattern, don’t over-assume browser features. For example, if you’ve sniffed that the browser doesn’t support window.addEventListener, don’t just assume the browser you’re dealing with is IE and it doesn’t support XMLHttpRequest natively either, although it was true at some point in the browser’s history. There might be cases in which you can safely assume that features go together, such as .addEventListener and .removeEventListener, but in general browser features change independently. The best strategy is to sniff features separately and then use load-time branching to do the sniffing only once.
+
+
 <a name="Function Properties—A Memoization Pattern"></a>
 ##Function Properties—A Memoization Pattern
 <a name="Curry"></a>
