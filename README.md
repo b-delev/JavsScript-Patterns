@@ -67,6 +67,7 @@ function func() {
 }
 ```
 
+
 DOM (Document Object Model) references. 
 You can assign DOM references to local variables together with the single declaration.
 
